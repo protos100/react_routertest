@@ -10,6 +10,7 @@ var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
 module.exports = {
   entry: [
     './src/index.js',
+    './src/style.css',
     'webpack-dev-server/client?http://0.0.0.0:4000',
     'webpack/hot/only-dev-server'
   ],
@@ -34,7 +35,11 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: "babel-loader"
+        use: "babel-loader"
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"]
       }
     ]
   },
@@ -42,5 +47,9 @@ module.exports = {
   plugins: [
     HTMLWebpackPluginConfig,
     new webpack.HotModuleReplacementPlugin()
-  ]
+  ],
+
+  resolve: {
+    modules: [path.resolve(__dirname, "src"), "node_modules"]
+  }
 };
