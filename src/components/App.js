@@ -4,7 +4,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      ws: new WebSocket('ws://localhost/ws/A');
+      ws: new WebSocket('ws://localhost/ws/A')
     }
   }
   handleData(data) {

@@ -1,4 +1,5 @@
 import express from 'express';
+import expressWs from 'express-ws';
 import path from 'path';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
@@ -12,6 +13,7 @@ import ws from './ws';
 const app = express();
 const port = 3000;
 const devPort = 4000;
+expressWs(app);
 
 /* mongodb connection */
 const db = mongoose.connection;
