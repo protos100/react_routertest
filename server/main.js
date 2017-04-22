@@ -6,6 +6,8 @@ import mongoose from 'mongoose';
 import session from 'express-session'; 
 import WebpackDevServer from 'webpack-dev-server';
 import webpack from 'webpack';
+import api from './routes';
+import ws from './ws';
 
 const app = express();
 const port = 3000;
@@ -29,6 +31,8 @@ app.use(session({
 app.use('/', express.static(path.join(__dirname, './../public')));
 app.use(morgan('dev'));
 app.use(bodyParser.json());
+app.use('/api', api);
+app.use('/ws', ws);
 
 if(process.env.NODE_ENV == 'development') {
     console.log('Server is running on development mode');
