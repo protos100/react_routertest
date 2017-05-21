@@ -11,8 +11,8 @@ import api from './routes';
 import ws from './ws';
 
 const app = express();
-const port = 3000;
-const devPort = 4000;
+const port = 3500;
+const devPort = 4500;
 expressWs(app);
 
 /* mongodb connection */
@@ -35,7 +35,9 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use('/api', api);
 app.use('/ws', ws);
-
+app.get('*', (rec, res)=>{
+  res.sendFile(path.resolve(__dirname, './../public/index.html'));
+ });
 if(process.env.NODE_ENV == 'development') {
     console.log('Server is running on development mode');
     const config = require('../webpack.dev.config');
